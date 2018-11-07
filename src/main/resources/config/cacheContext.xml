@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	
+	<bean id="cacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation">
+			<value>classpath:config/ehcache.xml</value>
+		</property>
+	</bean>
+	
+	<bean id="inboundLinkCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager" ref="cacheManager"/>
+		<property name="cacheName" value="com.mycompany.cache.INBOUNDLINK_CACHE"/>
+	</bean>
+	
+	<bean id="outboundLinkCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager" ref="cacheManager"/>
+		<property name="cacheName" value="com.mycompany.cache.OUTBOUNDLINK_CACHE"/>
+	</bean>
+	
+	<bean id="routerCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager" ref="cacheManager"/>
+		<property name="cacheName" value="com.mycompany.cache.ROUTER_CACHE"/>
+	</bean>
+	
+	<bean id="publicDomainCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager" ref="cacheManager"/>
+		<property name="cacheName" value="com.mycompany.cache.PUBLIC_DOMAIN_CACHE"/>
+	</bean>
+	
+</beans>
